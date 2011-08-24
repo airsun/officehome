@@ -1,17 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Home</title>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <script type="text/javascript" src="jquery-1.6.2.js"></script>
+    <script type="text/javascript" src="sites.js"></script>
+    <style type="text/css">
+        html {
+            height: 100%;
+            overflow: -moz-scrollbars-vertical;
+        }
+
+        body {
+            background: #eee;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+            text-shadow: 0 1px 0 #fff;
+
+            /*background: #728eaa;*/
+            /*background: -moz-linear-gradient(top, #25303C 0%, #728EAA 100%); *//* firefox */
+            /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #25303C), color-stop(100%, #728EAA)); *//* webkit */
+            /*margin: 0;*/
+            /*padding: 0;*/
+            /*border: 0;*/
+            /*outline: none;*/
+        }
+
+        h1 {
+            border-bottom: 1px solid #ccc;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .template {
+            display: none;
+        }
+
+        #container {
+
+        }
+
+        #sitebar {
+            width: 1000px;
+            position: absolute;
+            left: 50%;
+            margin-left: -500px;
+        }
+
+        .siteicon {
+            display: none;
+            width: 140px;
+            float: left;
+            background: #f7f7f7;
+            background: -moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
+            background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
+            border: 1px solid #aaa;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 0 0 15px #aaa;
+            -webkit-box-shadow: 0 0 15px #aaa;
+            /*margin: 60px auto 0;*/
+            padding: 20px;
+        }
+
+        .iconcontainer {
+            cursor: auto;
+        }
+
+        .icon {
+            width: 120px;
+        }
+
+        .title {
+            cursor: auto;
+        }
+    </style>
 </head>
 <body>
+<div id="container">
+    <div id="sitebar"></div>
+    <div id="rsscontainer"></div>
+</div>
+<!--templates-->
+<div id="templatesite" class="template">
+    <div class="siteicon">
+        <h1 class="title"></h1>
+        <img src="" class="icon"/>
+    </div>
+</div>
 </body>
 <script type="text/javascript">
-    var sites = [
-        {title:"site a",url:"http://localhost/a",rss:"rss a"}
-        ,
-        {title:"site b",url:"http://localhost/b",rss:"rss b"}
-        ,
-        {title:"site c",url:"http://localhost/c",rss:"rss c"}
-    ];
+    $(document).ready(function() {
+        for (var i = 0; i < sites.length; i++) {
+            loadSite(sites[i]);
+        }
+    });
+
+    function loadSite(site) {
+        $("#sitebar").append($("#templatesite").html()).children("div").last().fadeIn("slow", function() {
+            $(this).find(".icon").attr("src", site.icon).click(function() {
+                opensite(site.url);
+            });
+
+            $(this).find(".title").html(site.title).click(function() {
+                opensite(site.url);
+            });
+        });
+    }
+
+    function opensite(url) {
+        window.open(url, "_blank");
+    }
 </script>
 </html>
