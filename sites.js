@@ -2,25 +2,25 @@ sites = [
     {
         title:"测试site",
         url:"http://jquery.com",
-        icon:"",
-        rss:"http://forum.jquery.com/getting-started/feed"
+        icon:"http://192.168.4.26:8090/download/attachments/557058/global.logo?version=1&amp;modificationDate=1308124982000",
+        rss:""
     },
     {
         title:"wiki",
         url:"http://192.168.4.26:8090",
-        icon:"",
-        rss:"rss a"
+        icon:"http://192.168.4.26:8090/download/attachments/557058/global.logo?version=1&amp;modificationDate=1308124982000",
+        rss:"http://192.168.4.26:8090/createrssfeed.action?types=page&pageSubTypes=comment&pageSubTypes=attachment&types=blogpost&blogpostSubTypes=comment&blogpostSubTypes=attachment&types=mail&spaces=conf_all&title=%E6%96%B0%E4%BA%A7%E5%93%81%E7%A0%94%E5%8F%91%E4%B8%AD%E5%BF%83%E4%B8%93%E7%94%A8wiki+RSS+Feed&labelString%3D&excludedSpaceKeys%3D&sort=modified&maxResults=10&timeSpan=5&showContent=true&showDiff=true&confirm=Create+RSS+Feed&os_authType=basic"
     },
     {
         title:"jira",
         url:"http://192.168.4.249:8090",
-        icon:"",
-        rss:"rss b"
+        icon:"http://192.168.4.26:8090/download/attachments/557058/global.logo?version=1&amp;modificationDate=1308124982000",
+        rss:""
     },
     {
         title:"mail",
         url:"mail.xxx.com",
-        icon:"",
-        rss:"rss b"
+        icon:"http://192.168.4.26:8090/download/attachments/557058/global.logo?version=1&amp;modificationDate=1308124982000",
+        rss:""
     }
 ];

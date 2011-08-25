@@ -6,12 +6,9 @@
     <script type="text/javascript" src="jquery-1.6.2.js"></script>
     <script type="text/javascript" src="sites.js"></script>
     <style type="text/css">
-        html {
-            height: 100%;
-            overflow: -moz-scrollbars-vertical;
-        }
-
         body {
+            margin: 0;
+            padding: 0;
             background: #eee;
             color: #333;
             font-family: Arial, sans-serif;
@@ -41,15 +38,23 @@
             display: none;
         }
 
-        #container {
-
+        #nav {
+            /*display: none;*/
+            width: 100%;
+            height: 30px;
+            /*background-color: #d3d3d3;*/
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: #d3d3d3;
         }
 
         #sitebar {
+            /*border-bottom-style: solid;*/
             width: 1000px;
             position: absolute;
             left: 50%;
             margin-left: -500px;
+            padding: 10px;
         }
 
         .siteicon {
@@ -57,31 +62,28 @@
             width: 140px;
             float: left;
             background: #f7f7f7;
+            border: 1px solid #aaa;
             background: -moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
             background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
-            border: 1px solid #aaa;
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             -moz-box-shadow: 0 0 15px #aaa;
             -webkit-box-shadow: 0 0 15px #aaa;
             /*margin: 60px auto 0;*/
+            margin-left: 50px;
+            margin-top: 50px;
             padding: 20px;
         }
 
-        .iconcontainer {
-            cursor: auto;
-        }
-
         .icon {
-            width: 120px;
-        }
-
-        .title {
-            cursor: auto;
+            width: 140px;
+            height: 140px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+<div id="nav"></div>
 <div id="container">
     <div id="sitebar"></div>
     <div id="rsscontainer"></div>
@@ -103,13 +105,24 @@
 
     function loadSite(site) {
         $("#sitebar").append($("#templatesite").html()).children("div").last().fadeIn("slow", function() {
-            $(this).find(".icon").attr("src", site.icon).click(function() {
+            $(".icon",this).attr("src", site.icon).click(function() {
                 opensite(site.url);
             });
 
-            $(this).find(".title").html(site.title).click(function() {
-                opensite(site.url);
-            });
+            $(".title",this).html(site.title);
+
+            if(site.rss != ""){
+                loadRss(site);
+            }
+        });
+    }
+
+    function loadRss(site){
+        alert(site.rss);
+        $.get(site.rss,function(xml){
+            $("item",xml).each(function(e){
+                alert($('title',this));
+            })
         });
     }
 
