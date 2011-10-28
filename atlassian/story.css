@@ -1,0 +1,81 @@
+#storydiagram {
+    width: 836px;
+    float: left;
+    border: 1px solid #aaa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 0 15px #aaa;
+    -webkit-box-shadow: 0 0 15px #aaa;
+    margin-left: 50px;
+    margin-top: 50px;
+    padding: 20px;
+
+    display: inline-block;
+    position: relative;
+    /*width: 286px;*/
+    background-color: #F0F7FC;
+}
+
+#storydiagram ul {
+    background: url(iCTL.png) no-repeat 0 100%;
+    display: inline-block;
+    height: 190px;
+    padding: 0 5px 0 24px;
+    top: 0;
+}
+
+#storydiagram p {
+    width: 150px;
+    vertical-align: top;
+    display: inline-block;
+    font-size: 136%;
+    line-height: 34px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+#storydiagram li a {
+    color: #7CA60A;
+    display: inline-block;
+    font-family: "kulturista-web", Helvetica, Arial, Verdana, sans-serif;
+    font-size: 167%;
+    height: 190px;
+    line-height: 22px;
+    text-align: center;
+    width: 160px;
+    text-decoration: none;
+}
+
+li {
+    display: list-item;
+    list-style: none;
+    text-align: -webkit-match-parent;
+    float: left;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+a.cta {
+    display: inline-block;
+}
+
+a, .toggle {
+    color: #4C9AC9;
+    cursor: pointer;
+    outline: 0;
+    text-decoration: none;
+}
+
+.arrow {
+    color: #7CA60A;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 4px;
+}

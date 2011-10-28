@@ -1,92 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>新产品研发中心应用首页</title>
     <META http-equiv=Content-Type content="text/html; charset=utf-8">
-    <script type="text/javascript" src="jquery-1.6.2.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jfeed.js"></script>
     <script type="text/javascript" src="sites.js"></script>
     <style type="text/css">
         body {
-            margin: 0;
-            padding: 0;
             background: #eee;
             color: #333;
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            line-height: 16px;
             text-shadow: 0 1px 0 #fff;
-
-            /*background: #728eaa;*/
-            /*background: -moz-linear-gradient(top, #25303C 0%, #728EAA 100%); *//* firefox */
-            /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #25303C), color-stop(100%, #728EAA)); *//* webkit */
-            /*margin: 0;*/
-            /*padding: 0;*/
-            /*border: 0;*/
-            /*outline: none;*/
-        }
-
-        h1 {
-            border-bottom: 1px solid #ccc;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .template {
-            display: none;
-        }
-
-        #nav {
-            /*display: none;*/
-            width: 100%;
-            height: 30px;
-            /*background-color: #d3d3d3;*/
-            border-bottom-style: solid;
-            border-bottom-width: 1px;
-            border-bottom-color: #d3d3d3;
-        }
-
-        #sitebar {
-            /*border-bottom-style: solid;*/
-            width: 1000px;
-            position: absolute;
-            left: 50%;
-            margin-left: -500px;
-            padding: 10px;
-        }
-
-        .siteicon {
-            display: none;
-            width: 140px;
-            float: left;
-            background: #f7f7f7;
-            border: 1px solid #aaa;
-            background: -moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
-            background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-box-shadow: 0 0 15px #aaa;
-            -webkit-box-shadow: 0 0 15px #aaa;
-            /*margin: 60px auto 0;*/
-            margin-left: 50px;
-            margin-top: 50px;
-            padding: 20px;
-        }
-
-        .icon {
-            width: 140px;
-            height: 140px;
-            cursor: pointer;
         }
     </style>
+    <link href="base.css" rel="stylesheet">
+    <link href="sites.css" rel="stylesheet">
+    <link href="atlassian/story.css" rel="stylesheet">
 </head>
 <body>
-<div id="nav"></div>
 <div id="container">
-    <div id="sitebar"></div>
-    <div id="rsscontainer"></div>
+    <div id="nav"></div>
+    <div id="content">
+        <div class="box">
+            <div class="sitebar"></div>
+            <div id="storydiagram">
+                <ul>
+                    <li><a href="http://www.atlassian.com/how-it-works">Dream it.</a></li>
+                    <li><a href="http://www.atlassian.com/how-it-works">Plan it.</a></li>
+                    <li><a href="http://www.atlassian.com/how-it-works">Build it.</a></li>
+                    <li><a href="http://www.atlassian.com/how-it-works">Launch it.</a></li>
+                </ul>
+                <p>
+                    <a class="cta" href="http://www.atlassian.com/software/confluence/overview">
+                        Confluence <span class="arrow">»</span>
+                    </a>
+                    <br/>
+                    <a class="cta" href="http://www.atlassian.com/software/jira/overview">
+                        JIRA <span class="arrow">»</span>
+                    </a>
+                    <br/>
+                    <a class="cta" href="http://www.atlassian.com/software/fisheye/overview">
+                        FishEye <span class="arrow">»</span>
+                    </a>
+                    <br/>
+                    <a class="cta" href="http://www.atlassian.com/software/bamboo/overview">
+                        Bamboo <span class="arrow">»</span>
+                    </a>
+                    <br/>
+                    <a class="cta" href="http://www.atlassian.com/software/crucible/overview">
+                        Crucible <span class="arrow">»</span>
+                    </a>
+                    <br/>
+            </div>
+            <div id="rsscontainer"></div>
+        </div>
+    </div>
 </div>
 <!--templates-->
 <div id="templatesite" class="template">
@@ -101,28 +69,30 @@
         for (var i = 0; i < sites.length; i++) {
             loadSite(sites[i]);
         }
+
+        $("a").attr("target","_blank");
     });
 
     function loadSite(site) {
-        $("#sitebar").append($("#templatesite").html()).children("div").last().fadeIn("slow", function() {
-            $(".icon",this).attr("src", site.icon).click(function() {
+        $(".sitebar").append($("#templatesite").html()).children("div").last().fadeIn("slow", function() {
+            $(".icon", this).attr("src", site.icon).click(function() {
                 opensite(site.url);
             });
 
-            $(".title",this).html(site.title);
+            $(".title", this).html(site.title);
 
-            if(site.rss != ""){
+            if (site.rss != "") {
                 loadRss(site);
             }
         });
     }
 
-    function loadRss(site){
-        alert(site.rss);
-        $.get(site.rss,function(xml){
-            $("item",xml).each(function(e){
-                alert($('title',this));
-            })
+    function loadRss(site) {
+        jQuery.getFeed({
+            url: site.rss,
+            success: function(feed) {
+                alert(feed.title);
+            }
         });
     }
 
